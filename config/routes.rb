@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    resources :categories
-  end
-  get "admin/index"
-  devise_for :admins
-  get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -22,4 +16,14 @@ Rails.application.routes.draw do
     root "admin#index", as: :admin_root
   end
   get "admin", to: "admin#index"
+
+  # admin routes
+  devise_for :admins
+  namespace :admin do
+    resources :categories
+    resources :orders
+    resources :products do
+      resources :stocks
+    end
+  end
 end

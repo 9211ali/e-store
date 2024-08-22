@@ -7,7 +7,7 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Categories</h1>
-    <%= link_to "New category", new_admin_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "Add category", new_admin_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
   
   <div class="flex flex-col w-full">
@@ -17,7 +17,6 @@
           <table class="min-w-full overflow-x-scroll">
             <thead>
               <tr>
-                <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">ID</th>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">Name</th>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">Description</th>
                 <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">Image</th>
@@ -25,10 +24,7 @@
             </thead>
             <tbody>
               <% @categories.each do |category| %>
-                <tr class="bg-gray-50 border-b">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium underline">
-                    <%= link_to category.id, [:admin, category] %>
-                  </td>
+                <tr class="bg-gray-50 border-b cursor-pointer" onclick="window.location='<%= admin_category_path(category) %>'">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <%= category.name %>
                   </td>
@@ -36,7 +32,7 @@
                     <%= category.description %>
                   </td>
                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <%= category.avatar.present? ? image_tag(category.avatar.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %>
+                    <%= category.avatar.present? ? image_tag(category.avatar, class: "w-10 h-10") : image_tag("https://via.placeholder.com/50") %>
                   </td>
                 <tr>
               <% end %>

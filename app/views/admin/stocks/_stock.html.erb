@@ -1,0 +1,11 @@
+<div id="<%= dom_id stock %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Size:</strong>
+    <%= stock.size %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Amount:</strong>
+    $<%= (stock.amount/100.0).to_s %>
+  </p>
+</div>

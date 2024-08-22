@@ -1,0 +1,51 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice">
+      <%= notice %>
+    </p>
+  <% end %>
+
+  <% content_for :title, "Products" %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Products</h1>
+    <%= link_to "Add Product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div class="flex flex-col w-full">
+    <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+      <div class="py-2 inline-block min-w-full">
+        <div class="overflow-x-auto">
+          <table class="min-w-full overflow-x-scroll">
+            <thead>
+              <tr>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">Name</th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">Description</th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">Price</th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 text-left">Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @products.each do |product| %>
+                <tr class="bg-gray-50 border-b cursor-pointer" onclick="window.location='<%= admin_product_path(product) %>'">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= product.name %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= product.description %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    $<%= (product.price / 100.0).to_s %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= product.images.any? ? image_tag(product.images.first, class: "w-10 h-10") : image_tag("https://via.placeholder.com/50") %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
