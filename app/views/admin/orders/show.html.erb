@@ -7,7 +7,7 @@
     <%= render @order %>
 
     <%= link_to "Modify Order", edit_admin_order_path(@order), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Orders List", admin_orders_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "<- Order List", admin_orders_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Cancel Order", [:admin, @order], method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>

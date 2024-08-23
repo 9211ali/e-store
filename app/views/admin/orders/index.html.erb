@@ -10,12 +10,79 @@
     <%= link_to "Make order", new_admin_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="admin_orders" class="min-w-full">
-    <% @orders.each do |order| %>
-      <%= render order %>
-      <p>
-        <%= link_to "View Order", [:admin, order], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+  <h2 class="font-bold">Pending Orders</h2>
+  <div class="flex flex-col w-full">
+    <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+      <div class="py-2 inline-block min-w-full">
+        <div class="overflow-x-auto">
+          <table class="min-w-full overflow-x-scroll">
+            <thead>
+              <tr>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">ID</th>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">Customer Email</th>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">Address</th>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">Billing Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Order.pending.order(created_at: :desc).each do |order| %>
+                <tr class="bg-gray-50 border-b cursor-pointer" onclick="window.location='<%= admin_order_path(order) %>'">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= order.id %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= order.customer_email %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= order.address %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    $<%= (order.total_amount / 100.0).to_s %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="font-bold">Completed Orders</h2>
+  <div class="flex flex-col w-full">
+    <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+      <div class="py-2 inline-block min-w-full">
+        <div class="overflow-x-auto">
+          <table class="min-w-full overflow-x-scroll">
+            <thead>
+              <tr>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">ID</th>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">Customer Email</th>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">Address</th>
+                <th scope="col" class="text-sm font-bold text-gray-800 px-6 text-left">Billing Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Order.completed.order(created_at: :desc).each do |order| %>
+                <tr class="bg-gray-50 border-b cursor-pointer" onclick="window.location='<%= admin_order_path(order) %>'">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= order.id %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= order.customer_email %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= order.address %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    $<%= (order.total_amount / 100.0).to_s %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

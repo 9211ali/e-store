@@ -16,7 +16,7 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Price:</strong>
-    <%= product.price %>
+    $<%= (product.price.zero? ? 1000 : product.price)/100.0 %>
   </p>
 
   <p class="my-5">
@@ -25,7 +25,7 @@
   </p>
 
   <p>
-  <strong class="block font-medium mb-1">Images List</strong>
+  <strong class="block font-medium mb-1">Image List</strong>
   </p>
   <% if product.images.any? %>
     <% product.images.each do |image| %>

@@ -19,4 +19,13 @@
     <%= order.total_amount %>
   </p>
 
+ <h6>Order Products are:</h6>
+  <% if order.products.any? %>
+    <% order.products.each do |product| %>
+      <span><%= product.name %></span>
+    <% end %>
+  <% else %>
+    <span class="font-bold">Oops! No products have been added in this order.</span>
+  <% end %>
+
 </div>
