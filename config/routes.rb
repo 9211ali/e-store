@@ -26,4 +26,8 @@ Rails.application.routes.draw do
       resources :stocks
     end
   end
+
+  # user routes
+  resources :categories, only: [:show]
+  resources :products, only: [:show]
 end
