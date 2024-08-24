@@ -34,5 +34,33 @@
       </div>
     </div>
   </div>
-  <div data-controller="dashboard">Hello from Ali</div>
+  <div class="my-8 w-full">
+    <h2 class="text-2xl text-gray-800 mb-4 font-medium">Revenue</h2>
+     <div data-controller="dashboard" data-dashboard-revenue-value="<%= @revenue_by_day.to_json %>" class="w-full">
+      <canvas id="revenueChart"></canvas>
+      </div>
+  </div>
+  <div class="flex flex-col w-full">
+    <h2 class="text-2xl text-gray-800 font-medium mb-4">Recent Pending Orders</h2>
+    <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr class="text-gray-800">
+            <th class="px-6 py-3 border-b-2 bg-gray-200 border-gray-100">Order ID</th>
+            <th class="px-6 py-3 border-b-2 bg-gray-200 border-gray-100">Customer</th>
+            <th class="px-6 py-3 border-b-2 bg-gray-200 border-gray-100">Date</th>
+            <th class="px-6 py-3 border-b-2 bg-gray-200 border-gray-100">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <% @pending_orders.each do |order|%>
+            <tr>
+              <td class="px-6 px-4 border-b border-gray-200"><%= link_to order.id, [:admin, order], class: "underline" %></td>
+              <td class="px-6 px-4 border-b border-gray-200"><%= order.customer_email %></td><td class="px-6 px-4 border-b border-gray-200"><%= order.created_at.strftime("%B %d, %Y %H:%M") %></td><td class="px-6 px-4 border-b border-gray-200">$<%= (order.total_amount/100.0).to_s %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
