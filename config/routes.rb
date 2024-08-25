@@ -30,4 +30,9 @@ Rails.application.routes.draw do
   # user routes
   resources :categories, only: [:show]
   resources :products, only: [:show]
+  get "cart", to: "carts#show"
+  post "checkout", to: "checkouts#create"
+  get "success", to: "checkouts#success"
+  get "cancel", to: "checkouts#cancel"
+  post 'webhooks', to: 'webhooks#stripe'
 end

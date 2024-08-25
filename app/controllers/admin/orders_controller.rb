@@ -3,7 +3,8 @@ class Admin::OrdersController < AdminController
 
   # GET /admin/orders or /admin/orders.json
   def index
-   @orders = Order.all
+   @pagy_pending, @pending_orders = pagy(Order.pending.order(created_at: :desc))
+   @pagy_completed, @completed_orders = pagy(Order.completed.order(created_at: :desc), page_param: :page_completed)
   end
 
   # GET /admin/orders/1 or /admin/orders/1.json
