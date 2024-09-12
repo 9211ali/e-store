@@ -62,7 +62,7 @@ gem "devise", "~> 4.9"
 gem "font-awesome-sass"
 gem "rubocop", require: false
 
-gem "stripe", "~> 12.5"
+gem "stripe", "~> 12.6"
 gem 'pry'
 
 gem "pagy", "~> 9.0"
