@@ -65,4 +65,4 @@ gem "rubocop", require: false
 gem "stripe", "~> 12.5"
 gem 'pry'
 
-gem "pagy", "~> 9.0"
+gem "pagy", "~> 9.1"
